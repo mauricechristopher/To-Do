@@ -4,14 +4,14 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
+app.use(express.static("public"));
 
 app.listen(3000, function() {
   console.log('Listening on port 3000!');
 });
 
-
-
 let task = ['win hackathon', 'get learnt in node'];
+let complete = ['become nodebeast', 'lose toenail'];
 
 app.post('/addtask', function (req, res) {
   let newTask = req.body.newtask;
@@ -21,8 +21,6 @@ app.post('/addtask', function (req, res) {
 
   res.redirect('/');
 });
-
-let complete = ['become a beast', 'finish hack'];
 
 app.post('/removetask', function (req, res) {
   let completeTask = req.body.check;
@@ -42,5 +40,5 @@ app.post('/removetask', function (req, res) {
 });
 
 app.get('/', function (req, res) {
-  res.render('index', { task: task});
+  res.render('index', { task: task, complete: complete});
 });

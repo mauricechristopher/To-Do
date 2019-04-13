@@ -7,35 +7,34 @@
 
   <body>
     <div class="container">
-      <h1> What to do </h1>
 
       <form action = "/addtask" method="POST">
-        <input type="text" name="newtask" placeholder="add new task">
-        <button> Add Task </button>
 
-        <h2> Added Task </h2>
+        <div class="headr">
+          <h1> What to do </h1>
+          <input type="text" name="newtask" placeholder="add new task" id="add">
+          <button id="b1"> Add Task </button>
+        </div>
 
-        <% for( let i = 0; i < task.length; i++){ %>
+        <h2> Added Tasks </h2>
 
-        <li>
-          <input type="checkbox" name="check" value="<%= task[i] %>" /> <%= task[i] %>
-        </li>
+        <ul><% for( let i = 0; i < task.length; i++){ %>
+          <li>
+            <input id="test" type="checkbox" name="check" value="<%= task[i] %>" /> <%= task[i] %>
+          </li>
+        <% } %></ul>
 
-        <% } %>
+        <button formaction="/removetask" type="submit"> Mark Completed </button>
 
-        <button formaction="/removetask" type="submit"> Remove </button>
+        <h2> Completed tasks </h2>
+
+        <ul><% for( let i = 0; i < complete.length; i++){ %>
+          <li id="completes">
+            <input type="checkbox" checked><%= complete[i] %>
+          </li>
+        <% } %></ul>
+
       </form>
-
-      <h2> Completed task </h2>
-
-      <% for( let i = 0; i < complete.length; i++){ %>
-
-      <li>
-        <input type="checkbox" checked><%= complete[i] %>
-      </li>
-
-      <% } %>
-
     </div>
   </body>
 </html>
